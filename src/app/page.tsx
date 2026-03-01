@@ -6,6 +6,7 @@ import { PrivacySection } from '../components/landingPage/PrivacySection';
 import DocumentationSection from '../components/landingPage/DocumentationSection';
 import OurSolutionSection from '../components/landingPage/ourSolution';
 import CoreFeatures from '../components/landingPage/CoreFeatures';
+import HowItWorks from '../components/landingPage/HowItWorks';
 
 
 
@@ -15,6 +16,7 @@ const page = () => {
       <DocumentationSection/>
       <OurSolutionSection/>
       <CoreFeatures/>
+      <HowItWorks/>
       <PrivacySection/>
       <WhoItsForSection/>
       <BuiltForFutureSection/>
