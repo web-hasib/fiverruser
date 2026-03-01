@@ -65,6 +65,34 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: ["User"],
     }),
 
+
+     forgotPassword: builder.mutation({
+      query: (body: any) => ({
+        url: "/otp/send",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+     resetPassword: builder.mutation({
+      query: (body: any) => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    verifyOtp: builder.mutation({
+      query: (body: any) => ({
+        url: "/otp/verify",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User"],
+    }),
+
     //  update admin contact info
   }),
 });
@@ -76,4 +104,7 @@ export const {
   useGetMyProfileQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+  useVerifyOtpMutation
 } = userApi;

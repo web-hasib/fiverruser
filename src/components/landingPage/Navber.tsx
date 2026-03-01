@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 const navLinks = [
   { name: "Home", href: "#home", active: true },
@@ -21,6 +23,7 @@ const languages = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
@@ -65,8 +68,8 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="w-full max-w-3xl flex items-center justify-between px-3 py-2  bg-gray-300 rounded-full backdrop-blur-md bg-opacity-60">
-            <div className="hidden md:flex items-center space-x-1">
+          <div className=" flex items-center  px-3 py-2 content-fit  bg-gray-300 rounded-full backdrop-blur-md bg-opacity-60">
+            <div className="hidden md:flex items-center  space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -137,14 +140,10 @@ export default function Navbar() {
             
             {/* Request Demo / Upload Button */}
             <button 
-              onClick={handleUploadClick}
+             onClick={() => router.push('/login')}
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-xl transition-colors flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
-              </svg>
-              Upload
+              sign in
             </button>
             
             {/* Mobile menu button */}
@@ -207,7 +206,7 @@ export default function Navbar() {
                 onClick={handleUploadClick}
                 className="mx-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors"
               >
-                Upload
+                sign in
               </button>
             </div>
           </div>
