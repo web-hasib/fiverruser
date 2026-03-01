@@ -1,10 +1,9 @@
-
-
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, Settings, ChevronDown } from "lucide-react";
+import { ThemeToggle } from "@/src/components/ui/theme-toggle";
 
 interface UserProfile {
   name: string;
@@ -23,62 +22,60 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
     email: "sarah.mitchell@gmail.com",
     imageUrl: "https://i.pravatar.cc/300?img=12",
   },
-  onSearch,
 }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    if (onSearch) {
-      onSearch(query);
-    }
-  };
-
-  const handleSearchClear = () => {
-    setSearchQuery("");
-    if (onSearch) {
-      onSearch("");
-    }
-  };
-
   return (
-    <div className="bg-yellow-500 px-6 py-3 flex items-center justify-between gap-6">
-      {/* Search Bar */}
+    <div className="bg-card border-b border-border px-6 py-3 flex items-center justify-between gap-6 transition-colors duration-200">
+      {/* Welcome Back Section */}
       <div className="flex-1 max-w-xl">
-        <div className="relative flex items-center">
-          <Search
-            size={20}
-            className="absolute left-4 text-gray-600"
-          />
-          <input
-            type="text"
-            placeholder="Search by Name, Reference ID, or SSN/Tax ID..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="w-full pl-12 pr-4 py-3 bg-yellow-100 text-gray-800 placeholder-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:bg-white transition-colors"
-          />
-        </div>
+        <h2 className="text-xl font-bold text-foreground leading-tight">
+          Welcome Back
+        </h2>
+        <p className="text-sm text-muted-foreground leading-tight">
+          {userProfile.name}
+        </p>
       </div>
 
-      {/* User Profile Section */}
-      <div className="flex items-center gap-3">
-        <div className="text-right">
-          <h3 className="text-gray-900 font-semibold text-sm">
-            {userProfile.name}
-          </h3>
-          <p className="text-gray-700 text-xs">
-            {userProfile.email}
-          </p>
+      {/* Right side Elements Section */}
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+
+        {/* Language Selector */}
+        <div className="flex items-center gap-2 bg-secondary rounded-full px-3 py-1.5 cursor-pointer border border-border">
+          <span className="text-lg leading-none select-none">🇬🇧</span>
+          <span className="text-foreground text-sm font-medium">US</span>
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
         </div>
-        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2 border-gray-200">
-          <Image
-            src={userProfile.imageUrl}
-            alt={userProfile.name}
-            width={40}
-            height={40}
-            className="w-full h-full object-cover"
-          />
+
+        {/* Search Icon */}
+        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer border border-border">
+          <Search className="w-5 h-5 text-muted-foreground" />
+        </div>
+
+        {/* Settings Icon */}
+        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer border border-border">
+          <Settings className="w-5 h-5 text-muted-foreground" />
+        </div>
+
+        {/* User Profile Section */}
+        <div className="flex items-center gap-3 bg-secondary rounded-full p-1 pr-4 cursor-pointer border border-border">
+          <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src={userProfile.imageUrl}
+              alt={userProfile.name}
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col text-left">
+            <h3 className="text-foreground font-semibold text-sm leading-tight">
+              {userProfile.name}
+            </h3>
+            <p className="text-muted-foreground text-xs leading-tight">
+              {userProfile.email}
+            </p>
+          </div>
+          <ChevronDown className="w-4 h-4 text-muted-foreground ml-1" />
         </div>
       </div>
     </div>

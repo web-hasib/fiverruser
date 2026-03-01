@@ -17,10 +17,10 @@ export default function DashboardSidebar({ children }: DashboardSidebarProps) {
   const { isCollapsedSidebar } = useSidebar();
 
   return (
-    <div className="relative h-full bg-primary">
+    <div className="relative h-full bg-primary text-primary-foreground">
       <motion.nav
         className={cn(
-          "h-full flex flex-col gap-2 z-50 sticky top-0 whitespace-nowrap px-4 shadow-xs  text-base bg-primary overflow-hidden"
+          "h-full flex flex-col gap-2 z-50 sticky top-0 whitespace-nowrap px-4 shadow-xs text-base bg-primary text-primary-foreground overflow-hidden",
         )}
         style={{
           width: isCollapsedSidebar
@@ -38,14 +38,13 @@ export default function DashboardSidebar({ children }: DashboardSidebarProps) {
         </div>
         <SidebarHeader />
 
-       <div className="flex-1 space-y-(--_sidebar-spacing) -mr-4 pr-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
-        {children}
-      </div>
+        <div className="flex-1 space-y-(--_sidebar-spacing) -mr-4 pr-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+          {children}
+        </div>
 
-      <div className="border-t mb-2 md:mb-4 lg:mb-6 border-white/10 bg-white rounded-md pt-1 mt-2">
-        <DashboardLogoutButton />
-      </div>
-
+        <div className="border-t mb-2 md:mb-4 lg:mb-6 border-border bg-background text-foreground rounded-md pt-1 mt-2">
+          <DashboardLogoutButton />
+        </div>
       </motion.nav>
     </div>
   );
@@ -62,13 +61,19 @@ function SidebarHeader() {
       >
         {!isExpanded && (
           <Link href={"/"}>
-            <Image src="/Logo.png" alt="logo" width={100} height={80} />
+            <Image
+              src="/logo-without-text.png"
+              alt="logo"
+              width={100}
+              height={80}
+            />
           </Link>
         )}
 
         {isExpanded && (
-          <Link href={"/"} className="flex justify-center items-center">
-            <Image src="/Logo.svg" alt="logo" width={180} height={150} />
+          <Link href={"/"} className="flex justify-center items-center gap-3">
+            <Image src="/logo-without-text.png" alt="logo" width={70} height={70} />
+            <span className="text-2xl  font-bold">MedAI Pro</span>
           </Link>
         )}
       </motion.div>
@@ -83,7 +88,7 @@ export function SidebarToggleButton() {
       <ChevronsRight
         className={cn(
           "size-4 text-gray-500",
-          isExpanded ? "-scale-100" : "scale-100"
+          isExpanded ? "-scale-100" : "scale-100",
         )}
       />
     </button>

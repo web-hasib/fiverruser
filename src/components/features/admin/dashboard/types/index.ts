@@ -4,3 +4,8 @@ export type DashboardNavigationType = {
   icon?: React.ReactElement | string;
   children?: DashboardNavigationType[];
 };
+
+export type DashboardNavGroupType = {
+  groupLabel?: string; // e.g. "SYSTEM", "USERS & WORKSPACES" — omit for no label
+  items: DashboardNavigationType[];
+};

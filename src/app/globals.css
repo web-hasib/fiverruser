@@ -64,6 +64,48 @@
 
   /* === BACKGROUNDS === */
   --background: #f4f6f8;
+  --sidebar: #f8fafc;
+  --card: #ffffff;
+  --popover: #ffffff;
+
+  /* === TEXT === */
+  --foreground: #0f172a;
+  --card-foreground: #0f172a;
+  --popover-foreground: #0f172a;
+  --sidebar-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* === BORDERS & RINGS === */
+  --border: #e2e8f0;
+  --ring: #0f172a;
+
+  /* === PRIMARY (White in Light as requested) === */
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  /* === SIDEBAR === */
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #cbd5e1;
+
+  /* === STATUS COLORS (IMPORTANT) === */
+  --blue: #2563eb; /* Live chat */
+  --green: #16a34a; /* Wallet */
+  --purple: #9333ea; /* Marketplace */
+  --red: #dc2626; /* SOS */
+  --gray: #6b7280; /* Comment */
+}
+
+.dark {
+  /* === BACKGROUNDS === */
+  --background: #020617;
   --sidebar: #5e7389;
   --card: #1a1c1e;
   --popover: #7494b3;
@@ -81,9 +123,9 @@
   --border: rgba(255, 255, 255, 0.08);
   --ring: rgba(255, 255, 255, 0.25);
 
-  /* === PRIMARY (Neutral buttons) === */
-  --primary: #242424;
-  --primary-foreground: #483f3f;
+  /* === PRIMARY (Black in Dark as requested) === */
+  --primary: #000000;
+  --primary-foreground: #ffffff;
 
   --secondary: #1f2124;
   --secondary-foreground: #e5e5e5;
@@ -94,13 +136,6 @@
   /* === SIDEBAR === */
   --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: rgba(255, 255, 255, 0.3);
-
-  /* === STATUS COLORS (IMPORTANT) === */
-  --blue: #2563eb;        /* Live chat */
-  --green: #16a34a;       /* Wallet */
-  --purple: #9333ea;      /* Marketplace */
-  --red: #dc2626;         /* SOS */
-  --gray: #6b7280;        /* Comment */
 }
 
 /* Custom Scrollbar Styles */
