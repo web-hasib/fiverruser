@@ -1,9 +1,25 @@
 import React from 'react';
+import { Footer } from '../components/landingPage/footer';
+import { WhoItsForSection } from '../components/landingPage/whoItsForSection';
+import { BuiltForFutureSection } from '../components/landingPage/forFutureSection';
+import { PrivacySection } from '../components/landingPage/PrivacySection';
+import DocumentationSection from '../components/landingPage/DocumentationSection';
+import OurSolutionSection from '../components/landingPage/ourSolution';
+import Navbar from '../components/landingPage/Navber';
+
+
+
 
 const page = () => {
   return (
     <div>
-      something from main page
+      <Navbar/>
+      <DocumentationSection/>
+      <OurSolutionSection/>
+      <PrivacySection/>
+      <WhoItsForSection/>
+      <BuiltForFutureSection/>
+      <Footer/>
     </div>
   );
 };
