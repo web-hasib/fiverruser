@@ -18,31 +18,31 @@ const steps: Step[] = [
     id: 1,
     title: "Basic Information",
     description: "Let's start with your basic details.",
-    image: "/doctor.jpg",
+    image: "/Sign Up - 1 1.png",
   },
   {
     id: 2,
     title: "Secure Login",
     description: "Access through protected account.",
-    image: "/iamge-1.jpg",
+    image: "/Sign Up - 1 1.png",
   },
   {
     id: 3,
     title: "Select Specialty & Task",
     description: "Choose specialty and task according to need.",
-    image: "/array.png",
+    image: "/Sign Up - 1 1.png",
   },
   {
     id: 4,
     title: "Upload Documents",
     description: "Upload PDF, DOCX, or TXT files securely.",
-    image: "/doctor.jpg",
+    image: "/Sign Up - 1 1.png",
   },
   {
     id: 5,
     title: "AI-Generated Note",
     description: "Structured clinical note generation in seconds.",
-    image: "/iamge-1.jpg",
+    image: "/Sign Up - 1 1.png",
   },
 ];
 
@@ -116,8 +116,8 @@ const HowItWorks = () => {
             className="lg:col-span-5 flex justify-center order-1 lg:order-1"
             style={{ zIndex: 500 }}
           >
-            <div className="relative w-full max-w-[500px] aspect-4/5">
-              <div className="absolute inset-0 bg-white/30 backdrop-blur-2xl rounded-[3rem] border border-white/40 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
+            <div className="relative w-full max-w-[500px] aspect-4/4">
+              <div className="absolute inset-0 border border-black/10 rounded-3xl  overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -125,18 +125,31 @@ const HowItWorks = () => {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 1.1, x: -20 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 p-8 flex items-center justify-center"
+                    className="absolute inset-0 p-5 flex items-center justify-center"
                   >
-                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-white/50">
-                      <Image
-                        src={steps[activeStep].image}
-                        alt={steps[activeStep].title}
-                        fill
-                        className="object-cover"
-                        priority
-                        unoptimized
-                      />
-                    </div>
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden 
+  bg-white/20 backdrop-blur-xl 
+  border border-white/30 shadow-2xl">
+
+  {/* Inner corner glow */}
+  <div className="pointer-events-none absolute inset-0 rounded-3xl
+    shadow-[inset_0_0_30px_rgba(255,255,255,0.25)]">
+  </div>
+
+  {/* Soft gradient highlight */}
+  <div className="pointer-events-none absolute inset-0 rounded-3xl
+    bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-40">
+  </div>
+
+  <Image
+    src={steps[activeStep].image}
+    alt={steps[activeStep].title}
+    fill
+    className="object-fill"
+    priority
+    unoptimized
+  />
+</div>
                   </motion.div>
                 </AnimatePresence>
               </div>
