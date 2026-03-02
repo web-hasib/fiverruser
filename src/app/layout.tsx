@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ModalProvider } from "../components/provider/modal-provider";
 import ReduxWrapper from "../redux/ReduxWrapper";
-import { ThemeProvider } from "@/src/components/ui/theme-provider";
+
 import GoogleTranslateProvider from "@/src/components/google-translation/GoogleLang";
 import "./globals.css";
 
@@ -34,17 +34,10 @@ export default function RootLayout({
         style={{ position: "static", top: "0" }}
       >
         <GoogleTranslateProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ReduxWrapper>
-              {children} <ModalProvider />
-            </ReduxWrapper>
-            <Toaster position="top-right" richColors />
-          </ThemeProvider>
+          <ReduxWrapper>
+            {children} <ModalProvider />
+          </ReduxWrapper>
+          <Toaster position="top-right" richColors />
         </GoogleTranslateProvider>
       </body>
     </html>

@@ -55,6 +55,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Sliders: Icons.Sliders,
   ToggleLeft: Icons.ToggleLeft,
   // User dashboard icons
+  Plus: Icons.Plus,
   FileClock: Icons.FileClock,
   Stethoscope: Icons.Stethoscope,
   ClipboardList: Icons.ClipboardList,
@@ -64,18 +65,35 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const renderIcon = (
-  icon: string | React.ReactElement | undefined,
+  icon: DashboardNavigationType["icon"] | undefined,
   size: string,
 ) => {
   if (!icon) return null;
+
+  // 1. If it's a string, look it up in iconMap
   if (typeof icon === "string") {
     const IconComponent = iconMap[icon];
     if (!IconComponent) return null;
     return <IconComponent className={size} />;
   }
-  return React.cloneElement(icon, {
-    className: size,
-  } as React.SVGProps<SVGSVGElement>);
+
+  // 2. If it's a function (Functional Component/ElementType), render it
+  if (typeof icon === "function") {
+    const IconComponent = icon as React.ElementType;
+    return <IconComponent className={size} />;
+  }
+
+  // 3. If it's already a React Element, clone it with the size class
+  if (React.isValidElement(icon)) {
+    return React.cloneElement(
+      icon as React.ReactElement,
+      {
+        className: size,
+      } as React.SVGProps<SVGSVGElement>,
+    );
+  }
+
+  return null;
 };
 
 const IconSidebar = React.memo(({ items }: MenuProps) => {
@@ -113,7 +131,9 @@ const NameSidebar = React.memo(({ items }: MenuProps) => {
       const itemKey = `${item.href}-${index}`;
       return (
         <li key={itemKey} className={cn("w-full rounded")}>
-          <div className="flex w-full flex-1 items-center justify-between relative">
+          <div
+            className={`flex w-full flex-1 items-center justify-between relative rounded-2xl ${item.className}`}
+          >
             <DashboardActiveLink
               href={item.href}
               className={cn(

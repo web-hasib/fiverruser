@@ -1,8 +1,9 @@
 export type DashboardNavigationType = {
   name: string;
   href: string;
-  icon?: React.ReactElement | string;
+  icon?: React.ElementType | React.ReactElement | string;
   children?: DashboardNavigationType[];
+  className?: string;
 };
 
 export type DashboardNavGroupType = {

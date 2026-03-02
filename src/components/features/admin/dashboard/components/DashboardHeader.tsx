@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Search, Settings, ChevronDown } from "lucide-react";
-import { ThemeToggle } from "@/src/components/ui/theme-toggle";
 import { LanguageSwitcher } from "@/src/components/google-translation/LanguageSwitcher";
+import { ThemeToggle } from "@/src/components/ui/theme-toggle";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
 interface UserProfile {
   name: string;
@@ -42,16 +41,6 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
 
         {/* Language Selector */}
         <LanguageSwitcher />
-
-        {/* Search Icon */}
-        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer border border-border">
-          <Search className="w-5 h-5 text-muted-foreground" />
-        </div>
-
-        {/* Settings Icon */}
-        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer border border-border">
-          <Settings className="w-5 h-5 text-muted-foreground" />
-        </div>
 
         {/* User Profile Section */}
         <div className="flex items-center gap-3 bg-secondary rounded-full p-1 pr-4 cursor-pointer border border-border">

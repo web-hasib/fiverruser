@@ -34,7 +34,7 @@ export default function GoogleTranslateProvider({
             new window.google.translate.TranslateElement(
               {
                 pageLanguage: "en",
-                includedLanguages: "en,fr,iu,es,de,ar,pt,hi,bn",
+                includedLanguages: "en,fr,iu,es,de,ar,pt,hi,bn,hu",
                 layout:
                   window.google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false,

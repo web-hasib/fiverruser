@@ -24,7 +24,11 @@ const adminNavGroups: DashboardNavGroupType[] = [
     groupLabel: "System",
     items: [
       { href: "/dashboard/admin", name: "Dashboard", icon: "LayoutDashboard" },
-      { href: "/dashboard/admin/audit-logs", name: "Audit Logs", icon: "ScrollText" },
+      {
+        href: "/dashboard/admin/audit-logs",
+        name: "Audit Logs",
+        icon: "ScrollText",
+      },
     ],
   },
   {
@@ -57,13 +61,21 @@ const adminNavGroups: DashboardNavGroupType[] = [
     groupLabel: "Data & Safety",
     items: [
       { href: "/dashboard/admin/case", name: "Case", icon: "FolderOpen" },
-      { href: "/dashboard/admin/patients", name: "Patients", icon: "UserRound" },
+      {
+        href: "/dashboard/admin/patients",
+        name: "Patients",
+        icon: "UserRound",
+      },
     ],
   },
   {
     groupLabel: "Plans & Billing",
     items: [
-      { href: "/dashboard/admin/featured-list", name: "Featured List", icon: "Star" },
+      {
+        href: "/dashboard/admin/featured-list",
+        name: "Featured List",
+        icon: "Star",
+      },
       {
         href: "/dashboard/admin/plans-limits",
         name: "Plans & Limits",
@@ -88,6 +100,12 @@ const adminNavGroups: DashboardNavGroupType[] = [
 const userNavGroups: DashboardNavGroupType[] = [
   {
     items: [
+      {
+        href: "/dashboard/user/cases/new",
+        name: "New Case",
+        icon: "Plus",
+        className: "bg-blue-500",
+      },
       { href: "/dashboard/user", name: "Dashboard", icon: "LayoutDashboard" },
       { href: "/dashboard/user/cases", name: "Cases", icon: "FolderOpen" },
       { href: "/dashboard/user/patients", name: "Patients", icon: "UserRound" },
@@ -112,20 +130,28 @@ const userNavGroups: DashboardNavGroupType[] = [
   },
 ];
 
+import { ThemeProvider } from "@/src/components/ui/theme-provider";
+
 // ─── Layout ───────────────────────────────────────────────────────────
 function DashboardLayoutInner({ children }: React.PropsWithChildren) {
   const pathname = usePathname();
   const isUserDashboard = pathname.startsWith("/dashboard/user");
 
   return (
-    <SidebarProvider>
-      <DashboardContainer>
-        <DashboardHeaderContainer>
-          <DashboardHeader />
-        </DashboardHeaderContainer>
-        <DashboardSidebarContainer>
-          <DashboardSidebar>
-            {isUserDashboard && (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <SidebarProvider>
+        <DashboardContainer>
+          <DashboardHeaderContainer>
+            <DashboardHeader />
+          </DashboardHeaderContainer>
+          <DashboardSidebarContainer>
+            <DashboardSidebar>
+              {/* {isUserDashboard && (
               <div className="px-4 py-3">
                 <Link
                   href="/dashboard/user/cases/new"
@@ -135,22 +161,23 @@ function DashboardLayoutInner({ children }: React.PropsWithChildren) {
                   New Case
                 </Link>
               </div>
-            )}
-            <DashboardGroupedNavigation
-              groups={isUserDashboard ? userNavGroups : adminNavGroups}
-            />
-          </DashboardSidebar>
-        </DashboardSidebarContainer>
+            )} */}
+              <DashboardGroupedNavigation
+                groups={isUserDashboard ? userNavGroups : adminNavGroups}
+              />
+            </DashboardSidebar>
+          </DashboardSidebarContainer>
 
-        <DashboardMainContainer>
-          <Suspense
-            fallback={<div className="p-4 text-gray-400">Loading...</div>}
-          >
-            <div className="p-6">{children}</div>
-          </Suspense>
-        </DashboardMainContainer>
-      </DashboardContainer>
-    </SidebarProvider>
+          <DashboardMainContainer>
+            <Suspense
+              fallback={<div className="p-4 text-gray-400">Loading...</div>}
+            >
+              <div className="p-6">{children}</div>
+            </Suspense>
+          </DashboardMainContainer>
+        </DashboardContainer>
+      </SidebarProvider>
+    </ThemeProvider>
   );
 }
 
