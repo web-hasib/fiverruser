@@ -40,7 +40,7 @@ export default function DashboardContainer({
         } as React.CSSProperties
       }
       className={cn(
-        `grid transition-[grid] duration-200 bg-black h-screen`
+        `grid transition-[grid] duration-200 bg-background h-screen`,
       )}
     >
       {children}
@@ -58,7 +58,7 @@ export function DashboardSidebarContainer({ children }: DashboardSidebarProps) {
 
 export function DashboardHeaderContainer({ children }: DashboardSidebarProps) {
   return (
-    <div className="[grid-area:header] bg-[#fafaff] shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
+    <div className="[grid-area:header] bg-background shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
       {children}
     </div>
   );
@@ -66,7 +66,7 @@ export function DashboardHeaderContainer({ children }: DashboardSidebarProps) {
 
 export function DashboardMainContainer({ children }: DashboardMainProps) {
   return (
-    <div className="[grid-area:main] bg-black overflow-y-auto overflow-x-auto">
+    <div className="[grid-area:main] bg-background text-foreground overflow-y-auto overflow-x-auto">
       {children}
     </div>
   );

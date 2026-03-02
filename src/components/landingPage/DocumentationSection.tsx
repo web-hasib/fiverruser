@@ -3,7 +3,7 @@ import { AlertTriangle } from "lucide-react";
 
 export default function DocumentationSection() {
   return (
-    <section className="w-full bg-[#f4f4f6] py-20">
+    <section className="w-full bg-[#f4f4f6] py-16 mt-20 ">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}
@@ -20,7 +20,7 @@ export default function DocumentationSection() {
         </div>
 
         {/* Card Container */}
-       <div className="flex justify-beetwen max-w-3/4">
+       <div className="flex justify-beetwen md:max-w-3/4">
          <div className="bg-[#f3e9ea] rounded-2xl p-8 md:p-6 flex flex-col md:flex-row items-center gap-10">
           
           {/* Left Content */}
@@ -52,12 +52,13 @@ export default function DocumentationSection() {
           </div>
 
         </div>
-        <div className="flex justify-center items-end max-w-1/4 ">
+        <div className="hidden md:flex justify-center items-end md:ml-10 max-w-1/4 ">
             <Image
               src="/array.png" // replace with your image path
               alt="arrow"
               width={100}
               height={100}
+              className="object-cover w-[200px]"
             />
         </div>
        </div>

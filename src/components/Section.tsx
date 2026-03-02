@@ -30,7 +30,7 @@ export default function Section({
           "": padding === "sm",
           "": padding === "none",
         },
-        className
+        className,
       )}
     >
       {(eyebrow || title || description) && (
@@ -47,12 +47,7 @@ export default function Section({
 
 function Eyebrow({ children }: React.PropsWithChildren) {
   return (
-    <Heading
-      as="h2"
-      className="text-primary-500 pt-12"
-      size="h6"
-      align="center"
-    >
+    <Heading as="h2" className="text-primary pt-12" size="h6" align="center">
       {children}
     </Heading>
   );
@@ -67,7 +62,7 @@ function Title({
       as="h2"
       size={align && align === "left" ? "h2" : "h3"}
       align={align}
-      className="text-gray-800 tracking-tight"
+      className="text-foreground tracking-tight"
     >
       {children}
     </Heading>
@@ -75,5 +70,5 @@ function Title({
 }
 
 function Description({ children }: React.PropsWithChildren) {
-  return <p>{children}</p>;
+  return <p className="text-muted-foreground">{children}</p>;
 }

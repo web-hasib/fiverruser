@@ -22,9 +22,8 @@ type SidebarContextType = {
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
-export default function SidebarProvider({ children }: { children: ReactNode })
-// change 
-{
+export default function SidebarProvider({ children }: { children: ReactNode }) {
+  // change
   const [isCollapsedSidebar, setIsCollapsedSidebar] = useState(true);
   // const [isMouseHovering, setIsMouseHovering] = useState(false);
   const [hasHydrated, setHasHydrated] = useState(false);
@@ -34,7 +33,7 @@ export default function SidebarProvider({ children }: { children: ReactNode })
     setActiveTabs((prevActiveTabs) =>
       prevActiveTabs.includes(index)
         ? prevActiveTabs.filter((tab) => tab !== index)
-        : [...prevActiveTabs, index]
+        : [...prevActiveTabs, index],
     );
   };
 
@@ -68,7 +67,7 @@ export default function SidebarProvider({ children }: { children: ReactNode })
     const saveSidebarState = () => {
       try {
         const existingConfig = JSON.parse(
-          localStorage.getItem("appConfig") || "{}"
+          localStorage.getItem("appConfig") || "{}",
         );
         const updatedConfig = {
           ...existingConfig,

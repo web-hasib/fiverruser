@@ -53,10 +53,11 @@ const headingVariants = cva("", {
 });
 
 export interface HeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, "title">,
     VariantProps<typeof headingVariants> {
   /**
-   * The semantic HTML heading level to render
+   * The semantic HTML heading level to render for the title
    * @default "h2"
    */
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -64,9 +65,17 @@ export interface HeadingProps
    * Change the default rendered element for the one passed as a child
    */
   asChild?: boolean;
+  /**
+   * The main title text
+   */
+  title?: React.ReactNode;
+  /**
+   * Optional subtitle text
+   */
+  subtitle?: React.ReactNode;
 }
 
-const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+const Heading = React.forwardRef<HTMLDivElement, HeadingProps>(
   (
     {
       as = "h2",
@@ -77,29 +86,50 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       asChild = false,
       className,
       children,
+      title,
+      subtitle,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Component = asChild ? Slot : as;
-
-    // If size is not explicitly set, use the semantic 'as' prop as size
     const finalSize = size || as;
 
     return (
-      <Component
+      <div
         ref={ref}
         className={cn(
-          "text-wrap wrap-break-word",
-          headingVariants({ size: finalSize, weight, align, leading }),
-          className
+          "flex flex-col gap-1.5",
+          align === "center"
+            ? "items-center text-center"
+            : "items-start text-left",
+          className,
         )}
         {...props}
       >
-        {children}
-      </Component>
+        {(title || children) && (
+          <Component
+            className={cn(
+              "text-foreground text-wrap wrap-break-word font-bold tracking-tight",
+              headingVariants({
+                size: finalSize,
+                weight,
+                align: "left",
+                leading,
+              }),
+            )}
+          >
+            {title || children}
+          </Component>
+        )}
+        {subtitle && (
+          <p className="text-muted-foreground text-sm sm:text-base max-w-[65ch] leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+      </div>
     );
-  }
+  },
 );
 
 Heading.displayName = "Heading";

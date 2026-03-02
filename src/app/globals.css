@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -64,6 +65,48 @@
 
   /* === BACKGROUNDS === */
   --background: #f4f6f8;
+  --sidebar: #f8fafc;
+  --card: #ffffff;
+  --popover: #ffffff;
+
+  /* === TEXT === */
+  --foreground: #0f172a;
+  --card-foreground: #0f172a;
+  --popover-foreground: #0f172a;
+  --sidebar-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* === BORDERS & RINGS === */
+  --border: #e2e8f0;
+  --ring: #0f172a;
+
+  /* === PRIMARY (White in Light as requested) === */
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  /* === SIDEBAR === */
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #cbd5e1;
+
+  /* === STATUS COLORS (IMPORTANT) === */
+  --blue: #2563eb; /* Live chat */
+  --green: #16a34a; /* Wallet */
+  --purple: #9333ea; /* Marketplace */
+  --red: #dc2626; /* SOS */
+  --gray: #6b7280; /* Comment */
+}
+
+.dark {
+  /* === BACKGROUNDS === */
+  --background: #171B20;
   --sidebar: #5e7389;
   --card: #1a1c1e;
   --popover: #7494b3;
@@ -81,9 +124,9 @@
   --border: rgba(255, 255, 255, 0.08);
   --ring: rgba(255, 255, 255, 0.25);
 
-  /* === PRIMARY (Neutral buttons) === */
-  --primary: #242424;
-  --primary-foreground: #483f3f;
+  /* === PRIMARY (Black in Dark as requested) === */
+  --primary: #000000;
+  --primary-foreground: #ffffff;
 
   --secondary: #1f2124;
   --secondary-foreground: #e5e5e5;
@@ -94,13 +137,6 @@
   /* === SIDEBAR === */
   --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: rgba(255, 255, 255, 0.3);
-
-  /* === STATUS COLORS (IMPORTANT) === */
-  --blue: #2563eb;        /* Live chat */
-  --green: #16a34a;       /* Wallet */
-  --purple: #9333ea;      /* Marketplace */
-  --red: #dc2626;         /* SOS */
-  --gray: #6b7280;        /* Comment */
 }
 
 /* Custom Scrollbar Styles */
@@ -125,4 +161,114 @@
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* =============================================
+   Google Translate CSS
+   ============================================= */
+
+body .skiptranslate {
+  display: none !important;
+  position: absolute;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+  position: absolute;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd.skiptranslate {
+  visibility: hidden !important;
+  height: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  position: absolute;
+}
+
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-top-frame,
+.goog-te-float-frame,
+.goog-te-combo,
+.goog-tooltip,
+.skiptranslate,
+[class*="VIpgJd"],
+[class*="goog-te"],
+[class*="goog-tooltip"],
+.google-translate-element {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  overflow: hidden !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+iframe[class*="goog"],
+iframe[src*="translate"],
+iframe[src*="google.com/translate"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+body {
+  top: 0 !important;
+  position: static !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+html {
+  top: 0 !important;
+  position: static !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+div[class*="goog-te"],
+div[class*="VIpgJd"],
+div[class*="skiptranslate"],
+span[class*="goog-te"],
+span[class*="VIpgJd"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.goog-te-banner-frame::before,
+.goog-te-banner-frame::after,
+.goog-te-top-frame::before,
+.goog-te-top-frame::after {
+  display: none !important;
+}
+
+.goog-tooltip,
+.goog-tooltip-hide {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-gadget,
+.goog-te-gadget-simple {
+  display: none !important;
 }
