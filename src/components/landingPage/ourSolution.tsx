@@ -13,17 +13,21 @@ export default function OurSolutionSection() {
           
           {/* Left Content */}
           <div className="flex-1">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-6">
-              <AlertTriangle className="text-red-500 w-6 h-6" />
+            <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm mb-6">
+              <Image
+                src="/solution.png"
+                alt="CAMERA-PRO Logo"
+                width={24}
+                height={24}
+              />
             </div>
 
             <h3 className="text-3xl font-semibold text-[#1f1b2d] mb-4">
-              The Problem
+              Our Solution
             </h3>
 
             <p className="text-gray-700 leading-relaxed">
-              Medical professionals spend hours creating and restructuring 
-              clinical documentation under strict compliance requirements.
+              A secure AI platform that assists clinicians while automatically anonymizing patient data before any AI processing.
             </p>
           </div>
 

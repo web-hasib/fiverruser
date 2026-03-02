@@ -56,7 +56,7 @@ export const BuiltForFutureSection = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:py-20 bg-cover bg-center" style={{ backgroundImage: 'url("/iamge-1.jpg")' }}>
+    <section className="py-16 px-4 sm:py-20 bg-cover bg-center" style={{ backgroundImage: 'url("/how-work.png")' }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl text-black sm:text-4xl font-bold  mb-4">

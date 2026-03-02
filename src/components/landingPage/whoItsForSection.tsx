@@ -6,19 +6,19 @@ export const WhoItsForSection = () => {
       id: 1,
       title: "Hospitals & Clinics",
       description: "Reduce documentation time and clinician burnout.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+      image: "/who-1.png"
     },
     {
       id: 2,
       title: "Private Practices",
       description: "Create structured reports without administrative overload.",
-      image: "https://images.unsplash.com/photo-1584969327043-98f2a7e8b1e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+      image: "/who-2.png"
     },
     {
       id: 3,
       title: "Medical Organizations",
       description: "Maintain compliance while leveraging AI responsibly.",
-      image: "https://images.unsplash.com/photo-1606220930742-64534e1b9c0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+      image: "/who-3.png"
     }
   ];
 

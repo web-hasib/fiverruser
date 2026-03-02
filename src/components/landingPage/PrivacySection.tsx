@@ -4,7 +4,7 @@ export const PrivacySection = () => {
   return (
     <section 
       className="py-16 px-4 sm:py-20 bg-cover bg-center relative"
-      style={{ backgroundImage: 'url("iamge-1.jpg")' }}
+      style={{ backgroundImage: 'url("/why-choose.png")' }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 to-blue-100/80"></div>
       
