@@ -5,7 +5,7 @@ import { useSidebar } from "./SidebarProvider";
 import { motion } from "motion/react";
 import { cn } from "@/src/lib/utils";
 import DashboardActiveLink from "./DashboardActiveLink";
-import { DashboardNavigationType } from "../types";
+import { DashboardNavigationType, DashboardNavGroupType } from "../types";
 import * as Icons from "lucide-react";
 
 interface MenuProps {
@@ -14,6 +14,10 @@ interface MenuProps {
 
 interface DashboardNavigationProps {
   items: DashboardNavigationType[];
+}
+
+interface DashboardGroupedNavigationProps {
+  groups: DashboardNavGroupType[];
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -39,28 +43,57 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ShoppingBag: Icons.ShoppingBag,
   Heart: Icons.Heart,
   Ticket: Icons.Ticket,
+  // New admin icons
+  LayoutPanelLeft: Icons.LayoutPanelLeft,
+  ScrollText: Icons.ScrollText,
+  Building2: Icons.Building2,
+  BookOpen: Icons.BookOpen,
+  CheckSquare: Icons.CheckSquare,
+  FolderOpen: Icons.FolderOpen,
+  UserRound: Icons.UserRound,
+  Star: Icons.Star,
+  Sliders: Icons.Sliders,
+  ToggleLeft: Icons.ToggleLeft,
+  // User dashboard icons
+  Plus: Icons.Plus,
+  FileClock: Icons.FileClock,
+  Stethoscope: Icons.Stethoscope,
+  ClipboardList: Icons.ClipboardList,
+  CheckSquare2: Icons.SquareCheck,
+  CalendarCheck: Icons.CalendarCheck,
+  Bot: Icons.Bot,
 };
 
-
-
 const renderIcon = (
-  icon: string | React.ReactElement | undefined,
-  size: string
+  icon: DashboardNavigationType["icon"] | undefined,
+  size: string,
 ) => {
   if (!icon) return null;
 
+  // 1. If it's a string, look it up in iconMap
   if (typeof icon === "string") {
     const IconComponent = iconMap[icon];
-    if (!IconComponent) {
-      console.warn(`Icon "${icon}" not found in iconMap`);
-      return null;
-    }
+    if (!IconComponent) return null;
     return <IconComponent className={size} />;
   }
 
-  return React.cloneElement(icon, {
-    className: size,
-  } as React.SVGProps<SVGSVGElement>);
+  // 2. If it's a function (Functional Component/ElementType), render it
+  if (typeof icon === "function") {
+    const IconComponent = icon as React.ElementType;
+    return <IconComponent className={size} />;
+  }
+
+  // 3. If it's already a React Element, clone it with the size class
+  if (React.isValidElement(icon)) {
+    return React.cloneElement(
+      icon as React.ReactElement,
+      {
+        className: size,
+      } as React.SVGProps<SVGSVGElement>,
+    );
+  }
+
+  return null;
 };
 
 const IconSidebar = React.memo(({ items }: MenuProps) => {
@@ -72,14 +105,13 @@ const IconSidebar = React.memo(({ items }: MenuProps) => {
       transition={{ ease: "linear" }}
       className="flex flex-col gap-6"
       role="navigation"
-      aria-label="Collapsed navigation"
     >
       {validItems.map((item, idx) => (
         <li key={`${item.href}-${idx}`}>
           <DashboardActiveLink
             href={item.href}
             className={cn(
-              "flex items-center size-7 shrink-0 text-white justify-center ml-1x rounded"
+              "flex items-center size-7 shrink-0 text-white justify-center ml-1x rounded",
             )}
             aria-label={item.name}
             title={item.name}
@@ -91,21 +123,22 @@ const IconSidebar = React.memo(({ items }: MenuProps) => {
     </motion.ul>
   );
 });
-
 IconSidebar.displayName = "IconSidebar";
 
 const NameSidebar = React.memo(({ items }: MenuProps) => {
-  
   const renderItems = (navItems: DashboardNavigationType[]) =>
     navItems.map((item, index) => {
       const itemKey = `${item.href}-${index}`;
-
       return (
         <li key={itemKey} className={cn("w-full rounded")}>
-          <div className="flex w-full flex-1 items-center justify-between relative">
+          <div
+            className={`flex w-full flex-1 items-center justify-between relative rounded-2xl ${item.className}`}
+          >
             <DashboardActiveLink
               href={item.href}
-              className={cn("flex items-center gap-2 pl-4  py-4 text-gray-400 w-full ")}
+              className={cn(
+                "flex items-center gap-2 pl-4 py-4 text-gray-400 w-full",
+              )}
             >
               <div className="shrink-0">{renderIcon(item.icon, "size-5")}</div>
               <span className="whitespace-nowrap">{item.name}</span>
@@ -117,7 +150,7 @@ const NameSidebar = React.memo(({ items }: MenuProps) => {
 
   const validItems = useMemo(
     () => items.filter((item) => item.href && item.name),
-    [items]
+    [items],
   );
 
   return (
@@ -127,35 +160,55 @@ const NameSidebar = React.memo(({ items }: MenuProps) => {
       transition={{ ease: "linear" }}
       className="flex flex-col gap-2 whitespace-nowrap"
       role="navigation"
-      aria-label="Main navigation"
     >
       {renderItems(validItems)}
     </motion.ul>
   );
 });
-
 NameSidebar.displayName = "NameSidebar";
 
 const DashboardNavigation = React.memo(
   ({ items }: DashboardNavigationProps) => {
     const { isCollapsedSidebar } = useSidebar();
-
-    if (!items || items.length === 0) {
-      console.warn("DashboardNavigation: No items provided");
-      return null;
-    }
-
+    if (!items || items.length === 0) return null;
     return isCollapsedSidebar ? (
       <IconSidebar items={items} />
     ) : (
       <NameSidebar items={items} />
     );
-  }
+  },
 );
-
 DashboardNavigation.displayName = "DashboardNavigation";
 
 export default DashboardNavigation;
 
+// ─── Grouped Navigation ───────────────────────────────────────────────
+export const DashboardGroupedNavigation = React.memo(
+  ({ groups }: DashboardGroupedNavigationProps) => {
+    const { isCollapsedSidebar } = useSidebar();
 
+    if (!groups || groups.length === 0) return null;
 
+    if (isCollapsedSidebar) {
+      // In collapsed mode, just show all icons flat (no labels)
+      const allItems = groups.flatMap((g) => g.items);
+      return <IconSidebar items={allItems} />;
+    }
+
+    return (
+      <div className="flex flex-col gap-1">
+        {groups.map((group, gi) => (
+          <div key={gi} className="mb-2">
+            {group.groupLabel && (
+              <p className="text-[10px] font-semibold tracking-widest text-gray-600 uppercase px-4 pt-3 pb-1">
+                {group.groupLabel}
+              </p>
+            )}
+            <NameSidebar items={group.items} />
+          </div>
+        ))}
+      </div>
+    );
+  },
+);
+DashboardGroupedNavigation.displayName = "DashboardGroupedNavigation";
