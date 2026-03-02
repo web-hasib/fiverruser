@@ -23,16 +23,16 @@ const adminNavGroups: DashboardNavGroupType[] = [
   {
     groupLabel: "System",
     items: [
-      { href: "/dashboard", name: "Dashboard", icon: "LayoutDashboard" },
-      { href: "/dashboard/audit-logs", name: "Audit Logs", icon: "ScrollText" },
+      { href: "/dashboard/admin", name: "Dashboard", icon: "LayoutDashboard" },
+      { href: "/dashboard/admin/audit-logs", name: "Audit Logs", icon: "ScrollText" },
     ],
   },
   {
     groupLabel: "Users & Workspaces",
     items: [
-      { href: "/dashboard/users", name: "Users", icon: "Users" },
+      { href: "/dashboard/admin/users", name: "Users", icon: "Users" },
       {
-        href: "/dashboard/teams",
+        href: "/dashboard/admin/teams",
         name: "Teams / Hospitals",
         icon: "Building2",
       },
@@ -42,12 +42,12 @@ const adminNavGroups: DashboardNavGroupType[] = [
     groupLabel: "Content & AI",
     items: [
       {
-        href: "/dashboard/assistants-library",
+        href: "/dashboard/admin/assistants-library",
         name: "Assistants Library",
         icon: "BookOpen",
       },
       {
-        href: "/dashboard/assistants-approval",
+        href: "/dashboard/admin/assistants-approval",
         name: "Assistants Approval",
         icon: "CheckSquare",
       },
@@ -56,16 +56,16 @@ const adminNavGroups: DashboardNavGroupType[] = [
   {
     groupLabel: "Data & Safety",
     items: [
-      { href: "/dashboard/case", name: "Case", icon: "FolderOpen" },
-      { href: "/dashboard/patients", name: "Patients", icon: "UserRound" },
+      { href: "/dashboard/admin/case", name: "Case", icon: "FolderOpen" },
+      { href: "/dashboard/admin/patients", name: "Patients", icon: "UserRound" },
     ],
   },
   {
     groupLabel: "Plans & Billing",
     items: [
-      { href: "/dashboard/featured-list", name: "Featured List", icon: "Star" },
+      { href: "/dashboard/admin/featured-list", name: "Featured List", icon: "Star" },
       {
-        href: "/dashboard/plans-limits",
+        href: "/dashboard/admin/plans-limits",
         name: "Plans & Limits",
         icon: "Sliders",
       },
@@ -75,11 +75,11 @@ const adminNavGroups: DashboardNavGroupType[] = [
     groupLabel: "Settings",
     items: [
       {
-        href: "/dashboard/feature-toggles",
+        href: "/dashboard/admin/feature-toggles",
         name: "Feature Toggles",
         icon: "ToggleLeft",
       },
-      { href: "/dashboard/settings", name: "Setting", icon: "Settings" },
+      { href: "/dashboard/admin/settings", name: "Setting", icon: "Settings" },
     ],
   },
 ];

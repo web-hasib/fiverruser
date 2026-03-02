@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search, Settings, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "@/src/components/ui/theme-toggle";
+import { LanguageSwitcher } from "@/src/components/google-translation/LanguageSwitcher";
 
 interface UserProfile {
   name: string;
@@ -40,11 +41,7 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
         <ThemeToggle />
 
         {/* Language Selector */}
-        <div className="flex items-center gap-2 bg-secondary rounded-full px-3 py-1.5 cursor-pointer border border-border">
-          <span className="text-lg leading-none select-none">🇬🇧</span>
-          <span className="text-foreground text-sm font-medium">US</span>
-          <ChevronDown className="w-4 h-4 text-muted-foreground" />
-        </div>
+        <LanguageSwitcher />
 
         {/* Search Icon */}
         <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer border border-border">

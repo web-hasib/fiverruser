@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { ModalProvider } from "../components/provider/modal-provider";
 import ReduxWrapper from "../redux/ReduxWrapper";
 import { ThemeProvider } from "@/src/components/ui/theme-provider";
+import GoogleTranslateProvider from "@/src/components/google-translation/GoogleLang";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,18 +29,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReduxWrapper>
-            {children} <ModalProvider />
-          </ReduxWrapper>
-          <Toaster position="top-right" richColors />
-        </ThemeProvider>
+      <body
+        className="antialiased relative! z-20 top-0!"
+        style={{ position: "static", top: "0" }}
+      >
+        <GoogleTranslateProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ReduxWrapper>
+              {children} <ModalProvider />
+            </ReduxWrapper>
+            <Toaster position="top-right" richColors />
+          </ThemeProvider>
+        </GoogleTranslateProvider>
       </body>
     </html>
   );
