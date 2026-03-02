@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ModalProvider } from "../components/provider/modal-provider";
 import ReduxWrapper from "../redux/ReduxWrapper";
 
 import GoogleTranslateProvider from "@/src/components/google-translation/GoogleLang";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className="antialiased relative! z-20 top-0!"
+        className="antialiased relative! z-20 top-0! inter"
         style={{ position: "static", top: "0" }}
       >
         <GoogleTranslateProvider>
