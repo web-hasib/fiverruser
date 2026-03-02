@@ -5,6 +5,8 @@ import { BuiltForFutureSection } from '../components/landingPage/forFutureSectio
 import { PrivacySection } from '../components/landingPage/PrivacySection';
 import DocumentationSection from '../components/landingPage/DocumentationSection';
 import OurSolutionSection from '../components/landingPage/ourSolution';
+import Navbar from '../components/landingPage/Navber';
+
 import CoreFeatures from '../components/landingPage/CoreFeatures';
 import HowItWorks from '../components/landingPage/HowItWorks';
 
@@ -13,6 +15,7 @@ import HowItWorks from '../components/landingPage/HowItWorks';
 const page = () => {
   return (
     <div>
+      <Navbar/>
       <DocumentationSection/>
       <OurSolutionSection/>
       <CoreFeatures/>
