@@ -63,8 +63,8 @@ export const Footer = () => {
             </div>
             
             <div className="flex space-x-6">
-              <Link href="#" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">Privacy & Policy</Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">GDPR</Link>
+              <Link href="/privacy-policy" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">Privacy & Policy</Link>
+              <Link href="/term-condition" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">Terms & Conditions</Link>
               <Link href="#" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">Security</Link>
               <Link href="#" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">How it work</Link>
             </div>
