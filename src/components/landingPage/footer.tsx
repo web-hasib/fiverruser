@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -7,38 +8,57 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl p-6 sm:p-8">
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 lg:gap-12 items-start lg:items-center">
             {/* Left: Logo */}
-            <div className="flex items-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center mr-4">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 12c0 4.418-4.418 8-10 8-5.582 0-10-3.582-10-8s4.418-8 10-8 10 3.582 10 8z"></path>
-                    <path d="M21 12a9 9 0 1 1-18 0"></path>
-                  </svg>
-                </div>
-              </div>
+            <div className="flex justify-center lg:justify-start">
+              <Image
+                src="/logo.png"
+                width={250}           // Matches approximate size in screenshot (~square icon)
+                height={140}
+                alt="CAMERA-PRO Logo"
+                className="object-contain"
+              />
             </div>
-            
-            {/* Center: CTA */}
-            <div className="lg:col-span-2">
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-                Ready to See Medical AI Done Right?
+
+            {/* Center: Headline + Button */}
+            <div className="text-center lg:text-left">
+              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5 leading-tight">
+                Ready to See <br />
+                Medical AI Done Right?
               </h3>
-              <p className="text-gray-600 mb-6 max-w-2xl">
-                Experience a secure, compliant AI platform designed for real clinical workflows.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-colors">
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-lg transition-colors shadow-sm min-w-[180px]">
                   Request a Demo
                 </button>
-                <button className="bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium px-6 py-3 rounded-lg transition-colors flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+
+                {/* Single arrow button like in screenshot */}
+                <button className="bg-blue-600 hover:bg-blue-700 text-white p-3.5 rounded-lg transition-colors">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
               </div>
+            </div>
+
+            {/* Right: Description */}
+            <div className="text-center lg:text-right">
+              <p className="text-gray-700 text-base lg:text-lg leading-relaxed max-w-xs mx-auto lg:mx-0">
+                Experience a secure, compliant AI <br />
+                platform designed for real clinical <br />
+                workflows.
+              </p>
             </div>
           </div>
           
