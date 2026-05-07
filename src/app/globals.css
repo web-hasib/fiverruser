@@ -1,0 +1,626 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Optional light variant if needed later */
+@custom-variant light (&:is(.light *));
+
+/* =======================
+   BASE STYLES
+======================= */
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* =======================
+   THEME TOKENS (Tailwind v4)
+======================= */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-fg-primary: var(--fg-primary);
+  --color-fg-warning-yellow: var(--fg-warning-yellow);
+  --color-fg-warning-red: var(--fg-warning-red);
+  --color-fg-success: var(--fg-success);
+  --color-fg-positive-trend: var(--fg-positive-trend);
+  --color-fg-bg-main: var(--fg-bg-main);
+  --color-fg-bg-table: var(--fg-bg-table);
+  --color-fg-bg-sidebar-selected: var(--fg-bg-sidebar-selected);
+  --color-fg-text-heading: var(--fg-text-heading);
+  --color-fg-text-muted: var(--fg-text-muted);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --animate-border-rotate: border-rotate 4s linear infinite;
+
+  @keyframes border-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* === BACKGROUNDS === */
+  --background: #ecebebb5;
+  --sidebar: #f8fafc;
+  --card: #ffffff;
+  --popover: #ffffff;
+
+  /* === TEXT === */
+  --foreground: #0f172a;
+  --card-foreground: #0f172a;
+  --popover-foreground: #0f172a;
+  --sidebar-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* === BORDERS & RINGS === */
+  --border: #e2e8f0;
+  --ring: #0f172a;
+
+  /* === PRIMARY (White in Light as requested) === */
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  /* === SIDEBAR === */
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #cbd5e1;
+
+  /* === STATUS COLORS (IMPORTANT) === */
+  --blue: #2563eb;
+  /* Live chat */
+  --green: #16a34a;
+  /* Wallet */
+  --purple: #9333ea;
+  /* Marketplace */
+  --red: #dc2626;
+  /* SOS */
+  --gray: #6b7280;
+  /* Comment */
+
+  /* ============================================
+     FIGMA DESIGN SYSTEM — COLOR PALETTE
+     (Added from Figma designer handoff)
+     ============================================ */
+
+  /* Brand / Action */
+  --fg-primary: #2563eb;
+  /* Primary Color */
+  --fg-warning-yellow: #f59e0b;
+  /* Warning Color (amber) */
+  --fg-warning-red: #ef4444;
+  /* Error / Danger Color */
+  --fg-success: #22c55e;
+  /* Success Color */
+  --fg-positive-trend: #2dd4bf;
+  /* Positive Trend Color */
+
+  /* Backgrounds */
+  --fg-bg-main: #0c0e14;
+  /* Main Background Color */
+  --fg-bg-table: #111520;
+  /* Table Fill Color */
+  --fg-bg-sidebar-selected: #122041;
+  /* Sidebar Selection Color */
+
+  /* Gradient (used on gradient elements) */
+  --fg-gradient-top: #6b8bc3;
+  /* Gradient Top Color */
+  --fg-gradient-bottom: #003796;
+  /* Gradient Bottom Color */
+  --fg-gradient: linear-gradient(180deg, #6b8bc3 0%, #003796 100%);
+
+  /* Text */
+  --fg-text-heading: #ffffff;
+  /* Heading Text Color */
+  --fg-text-muted: #7b8394;
+  /* Muted Text Color */
+
+  /* Input */
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-bg-hover: #ffffff;
+  --input-border: rgba(226, 232, 240, 0.5);
+  --input-border-hover: #e2e8f0;
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.1);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.2);
+}
+
+.dark {
+  /* === BACKGROUNDS === */
+  --background: #0C0E14;
+  --sidebar: #5e7389;
+  --card: #111520;
+  --popover: #111520;
+
+  /* === TEXT === */
+  --foreground: #ededed;
+  --card-foreground: #ededed;
+  --popover-foreground: #ededed;
+  --sidebar-foreground: #d6d6d6;
+
+  --muted: #222426;
+  --muted-foreground: #9a9a9a;
+
+  /* === BORDERS & RINGS === */
+  --border: rgba(255, 255, 255, 0.08);
+  --ring: rgba(255, 255, 255, 0.25);
+
+  /* === PRIMARY (Black in Dark as requested) === */
+  --primary: #0d1016;
+  --primary-foreground: #ffffff;
+
+  --secondary: #1f2124;
+  --secondary-foreground: #e5e5e5;
+
+  --accent: #2a2c2f;
+  --accent-foreground: #ffffff;
+
+  /* === SIDEBAR === */
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: rgba(255, 255, 255, 0.3);
+
+  /* Input */
+  --input-bg: #1f2937;
+  --input-bg-hover: #111827;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-border-hover: rgba(255, 255, 255, 0.2);
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   GLOBAL SCROLLBAR STYLES (1px thickness)
+   ============================================ */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--accent-foreground)/10 transparent !important;
+}
+
+/* Chrome, Edge, Safari, Brave */
+*::-webkit-scrollbar {
+  width: 1px !important;
+  height: 1px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb) !important;
+  border-radius: 1px !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover) !important;
+}
+
+/* Specific class for components that still want to use it */
+.scrollbar-thin {
+  /* Inherits from global but keeps class for compatibility */
+}
+
+/* Enhanced custom scrollbar for usability */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px !important;
+  height: 4px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground) !important;
+  border-radius: 10px !important;
+  opacity: 0.5 !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground) !important;
+  opacity: 0.8 !important;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--accent-foreground) transparent !important;
+}
+
+/* .inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+.sora {
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Disable Google Translate hover effects and hide UI */
+font {
+  pointer-events: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Force transparency on any Google Translate injected styles */
+[class*="goog-te-"],
+[class*="VIpgJd-"] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#google_translate_element,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* =============================================
+   Calendar Styles
+   ============================================= */
+
+.rbc-calendar {
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background: transparent;
+  height: 100% !important;
+}
+
+.rbc-main-container {
+  background: transparent;
+}
+
+/* Header / Toolbar */
+.rbc-toolbar {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between !important;
+}
+
+.rbc-toolbar-label {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--foreground) !important;
+}
+
+.rbc-btn-group {
+  background-color: var(--muted);
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 0.25rem !important;
+}
+
+.rbc-btn-group button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  border: none !important;
+  color: var(--muted-foreground) !important;
+  background: transparent !important;
+}
+
+.rbc-btn-group button:hover {
+  color: var(--foreground) !important;
+  background-color: var(--accent) !important;
+}
+
+.rbc-btn-group button.rbc-active {
+  background-color: var(--background) !important;
+  color: var(--primary-foreground) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Day Names (Mon, Tue...) */
+.rbc-header {
+  padding: 0 !important;
+  border: none !important;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  text-align: center !important;
+  border-bottom: 1px solid var(--border) !important;
+  overflow: visible !important;
+  vertical-align: bottom !important;
+}
+
+/* Header row: remove the all-day cell completely */
+.rbc-allday-cell {
+  display: none !important;
+}
+
+.rbc-time-header-cell-single-day .rbc-header {
+  border-bottom: none !important;
+}
+
+/* Fix the TIME gutter header alignment */
+.rbc-time-header-gutter {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Month View Grid */
+.rbc-month-view {
+  border: none !important;
+  background: transparent !important;
+}
+
+.rbc-month-row {
+  border: none !important;
+}
+
+.rbc-day-bg {
+  border-right: 1px solid var(--border) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.rbc-off-range-bg {
+  background: transparent !important;
+  opacity: 0.3 !important;
+}
+
+.rbc-today {
+  background-color: color-mix(in srgb, var(--blue) 5%, transparent) !important;
+}
+
+.rbc-now {
+  border-top: 2px solid var(--blue) !important;
+}
+
+/* Day Numbers */
+.rbc-date-cell {
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-align: left !important;
+}
+
+.rbc-date-cell.rbc-now {
+  color: var(--blue) !important;
+  font-weight: 700 !important;
+}
+
+/* Events */
+.rbc-event {
+  border-radius: 0.5rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 10px;
+  font-weight: 700;
+  border: none !important;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  display: flex !important;
+  align-items: center !important;
+  min-height: 24px !important;
+}
+
+.rbc-event:hover {
+  transform: scale(1.02);
+}
+
+.rbc-event-label {
+  display: none !important;
+}
+
+.rbc-event-content {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+/* Specific Event Types */
+.event-blue {
+  background-color: color-mix(in srgb, var(--blue) 10%, transparent) !important;
+  color: var(--blue) !important;
+  border-left: 3px solid var(--blue) !important;
+}
+
+.event-orange {
+  background-color: color-mix(in srgb, #f97316 10%, transparent) !important;
+  color: #ea580c !important;
+  border-left: 3px solid #f97316 !important;
+}
+
+.event-teal {
+  background-color: color-mix(in srgb, #2dd4bf 10%, transparent) !important;
+  color: #0d9488 !important;
+  border-left: 3px solid #2dd4bf !important;
+}
+
+.event-red {
+  background-color: color-mix(in srgb, var(--red) 10%, transparent) !important;
+  color: var(--red) !important;
+  border-left: 3px solid var(--red) !important;
+}
+
+.event-purple {
+  background-color: color-mix(in srgb,
+      var(--purple) 10%,
+      transparent) !important;
+  color: var(--purple) !important;
+  border-left: 3px solid var(--purple) !important;
+}
+
+/* Time Grid View */
+.rbc-time-view {
+  border: none !important;
+  background: transparent !important;
+}
+
+.rbc-time-header {
+  border: none !important;
+}
+
+.rbc-time-header-content {
+  border-left: 1px solid var(--border) !important;
+}
+
+.rbc-time-content {
+  border: none !important;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid var(--border) !important;
+  min-height: 80px !important;
+}
+
+.rbc-time-gutter {
+  border: none !important;
+}
+
+.rbc-time-slot {
+  border: none !important;
+}
+
+.rbc-label {
+  font-size: 0.7rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  padding: 0 0.75rem !important;
+  white-space: nowrap;
+}
+
+/* Custom Scrollbar */
+.rbc-time-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rbc-time-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rbc-time-content::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground);
+  opacity: 0.2;
+  border-radius: 9999px;
+}
+
+/* Fix for monthly view events */
+.rbc-month-view .rbc-event {
+  margin-bottom: 0.25rem !important;
+}
+
+/* Time grid lines */
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid var(--border) !important;
+}
+
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
